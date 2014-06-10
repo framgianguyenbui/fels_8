@@ -1,0 +1,24 @@
+<%= form_for(@word) do |f| %>
+  <%= render 'shared/error_messages',object: f.object %>
+
+
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :japanese %><br>
+    <%= f.text_field :japanese %>
+  </div>
+  <div class="field">
+    <%= f.label :vietnamese %><br>
+    <%= f.text_field :vietnamese %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br>
+    <%= f.text_field :answer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

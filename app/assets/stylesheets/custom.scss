@@ -1,8 +1,12 @@
 @import "bootstrap";
+$color-active:#b9c2cf;
+$color-border-light:#ccc;
+$color-border:#303f59;
+$color-inactive:#666;
 $color-primary:#fb9337;
 $color-text:#fff;
-$color-active:#b9c2cf;
-$color-border:#303f59;
+$color-title:#485b79;
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4,
 h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike,
@@ -57,9 +61,7 @@ body{
       family: 'Roboto Condensed',Arial;
       size: 30px;
     }
-    text:{
-      transform: uppercase;
-    }
+    text-transform: uppercase;
     & > span{
       color:#fff;
     }
@@ -76,9 +78,7 @@ body{
       float:left;
       margin: 8px 10px 2px;
       padding: 8px 10px;
-      text:{
-        transform:none;
-      }
+      text-transform:none;
     }
   }
   & .nav{
@@ -259,4 +259,51 @@ body{
       text-align: center;
     }
   }
+}
+h3.moduleTitle {
+  border-bottom:1px solid $color-border-light;
+  color:$color-title;
+  padding:0 0 40px;
+  >*{
+    color:$color-inactive;
+    font-size:12px;
+  }
+}
+h4.moduleTitle{
+  font-size:14px;
+  margin-bottom:20px;
+  padding:10px 0 20px;
+  a{
+    color:$color-title;
+  }
+}
+.avatar{
+  border:1px solid $color-border-light;
+  border-radius: 2px;
+  padding:2px;
+}
+#activities{
+  list-style: none;
+  margin-top:20px;
+  li{
+    border-bottom:1px dashed $color-border-light;
+    padding:10px 10px 10px 0;
+    &:last-child{
+      border:none
+    }
+  }
+  img{
+    @extend .avatar;
+    margin-right:10px;
+  }
+}
+.btn-primary{
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  display: inline-block;
+  font-weight: bold;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }

@@ -1,17 +1,17 @@
-<div class="center hero-unit">
-<h1>Welcome to [Framgia E-Learning System]</h1>
-<h2>
-This is the home page for the
-<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-sample application.
-</h2>
-<%= link_to "Sign up now!", signup_path,
-class: "btn btn-large btn-primary" %>
-</div>
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% if signed_in? %>
-<aside class='col-lg-2 col-md-3 col-sm-4 col-xs-12'>
-  <%= render 'shared/user_sb' %>
-</aside>
+    <aside class='col-lg-2 col-md-3 col-sm-4 col-xs-12'>
+      <%= render 'shared/user_sb',user:current_user %>
+    </aside>
+    <div class='col-lg-10 col-md-9 col-sm-8 col-xs-12'>
+      <%= render 'activities/activities',user:current_user %>
+    </div>
+<% else %>
+    <div class="center hero-unit">
+      <h1>Welcome to Framgia E-Learning System</h1>
+
+      <%= link_to "Sign up now!", signup_path,
+                  class: "btn btn-large btn-primary" %>
+    </div>
+
 <% end %>
 

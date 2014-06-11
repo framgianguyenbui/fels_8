@@ -19,11 +19,11 @@ group :development do
 end
 
 gem 'bootstrap-sass'
-
+gem 'faker', '1.0.1'
+gem 'database_cleaner'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
-
-gem 'protected_attributes'
 gem 'devise','3.0.0.rc'
 
 gem 'bcrypt'
+gem 'protected_attributes'

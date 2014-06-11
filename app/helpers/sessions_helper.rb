@@ -1,12 +1,25 @@
 module SessionsHelper
   def sign_in(user, remember = false)
+    remember_token = User.new_remember_token
     if remember
-      cookies.permanent[:remember_token] = {value: user.remember_token,
+      cookies.permanent[:remember_token] = {value: remember_token,
                                             expires: 2.weeks.from_now.utc}
     else
-      cookies.permanent[:remember_token] = user.remember_token
+      cookies.permanent[:remember_token] = remember_token
     end
+    user.no_password_validation = true
+    user.update_attributes! remember_token: remember_token
+    user.no_password_validation = false
     @current_user = user
+  end
+
+  def sign_out
+    current_user.no_password_validation = true
+    current_user.remember_token = User.new_remember_token
+    current_user.update_attributes remember_token: remember_token
+    current_user.no_password_validation = false
+    current_user = nil
+    cookies.delete :remember_token
   end
 
   def current_user(user)
@@ -29,11 +42,6 @@ module SessionsHelper
     current_user.role == 2
   end
 
-  def sign_out
-    current_user = nil
-    cookies.delete :remember_token
-  end
-
   def signed_in?
     !current_user.nil?
   end
@@ -43,7 +51,7 @@ module SessionsHelper
   end
 
   def redirect_back_or(default)
-    redirect_to session[return_to]||default
+    redirect_to session[:return_to]||default
   end
 
   def signed_in_user

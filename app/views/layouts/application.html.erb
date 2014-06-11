@@ -15,19 +15,19 @@
 <%= render 'layouts/header' %>
 </div>
 
-<div class="container">
+<div class="container-fluid">
 
 <% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
+    <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
 <%= yield %>
 
 </div>
-<div>
+<div class="container-fluid">
 <%= render 'layouts/footer' %>
 
-	</div>
+</div>
 </body>
 </html>
 

@@ -1,0 +1,45 @@
+<% provide(:title,'Sign in') %>
+<div id='login-page'>
+  <div class='wtc'>
+      <div class='login-box'>
+        <div class='loginboxinner'>
+          <div class='logo'>
+            <h1><span>F</span>RAMGIA</h1>
+            <p>e-learning</p>
+          </div>
+          <br clear='all'><br>
+          <% if flash.any? %>
+              <div id='frmError'>
+                <% flash.each do |key,value| %>
+                    <div class='nousername'>
+                      <div class='loginmsg'><%= value %></div>
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+
+          <%= form_tag(signin_path,method:'post',multipart:true,class:'form-signin') do %>
+              <div class='username'>
+                <div class='usernameinner'>
+                  <%= email_field_tag 'email',nil,id:'txtUsername',class:'input-block-level',autocomplete:'off',placeholder:'Your email'%>
+                </div>
+              </div>
+              <div class='password'>
+                <div class='passwordinner'>
+                  <%= password_field_tag 'password',nil,id:'txtPassword',class:'input-block-level',placeholder:'Your password'%>
+                </div>
+              </div>
+              <button>Sign In</button>
+
+              <div class='keep'>
+                <div class='checker' id='uniform-undefined'>
+                  <%= check_box_tag 'remember' %>
+                  <%= label_tag '','Keep me logged in',for:'remember' %>
+                </div>
+
+              </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>

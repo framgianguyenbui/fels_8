@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def admin?
+    self.role == 1  
+  end
+
   private
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64

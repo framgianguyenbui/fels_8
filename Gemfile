@@ -24,5 +24,7 @@ gem 'database_cleaner'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 
-
 gem 'bcrypt'
+gem "nifty-generators"
+gem 'pdfkit'
+

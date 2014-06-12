@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_secure_password
 
   has_many :activities, dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -10,14 +9,18 @@ class User < ActiveRecord::Base
             class_name: 'Relationship', dependent: :destroy
 
 
-  before_save {|user| user.email = email.downcase}
-  before_save :create_remember_token
+  before_save {|user|
+    user.email = email.downcase
+  }
+  before_create :create_remember_token
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: {maximum:30, minimum: 6}
   validates :email, presence: true, format: {with: EMAIL_REGEX}, uniqueness: true
-  validates :password, presence: true, length: {maximum:32, minimum: 6}
-  validates :password_confirmation, presence: true
+
+  has_secure_password
+  attr_accessor :no_password_validation
+  validates :password, length:{minimum:6}, unless: :no_password_validation
 
   def following?(other_user)
     relationships.find_by_followed_id other_user.id
@@ -31,8 +34,12 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
   private
   def create_remember_token
-    sefl.remember_token = SecureRandom.urlsafe_base64
+    self.remember_token = SecureRandom.urlsafe_base64
   end
 end

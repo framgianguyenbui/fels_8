@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610065239) do
+ActiveRecord::Schema.define(version: 20140611010158) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20140610065239) do
   create_table "lessons", force: true do |t|
     t.integer  "category_id"
     t.integer  "user_id"
-    t.string   "words"
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,10 +44,10 @@ ActiveRecord::Schema.define(version: 20140610065239) do
     t.datetime "updated_at"
   end
 
-  create_table "results", force: true do |t|
-    t.integer  "lession_id"
+  create_table "started_lessons", force: true do |t|
+    t.integer  "lesson_id"
     t.integer  "word_id"
-    t.string   "answered"
+    t.integer  "word_value_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,12 +63,17 @@ ActiveRecord::Schema.define(version: 20140610065239) do
     t.datetime "updated_at"
   end
 
+  create_table "word_values", force: true do |t|
+    t.integer  "word_id"
+    t.string   "name"
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "words", force: true do |t|
+    t.string   "name"
     t.integer  "category_id"
-    t.string   "japanese"
-    t.string   "vietnamese"
-    t.string   "pronoun"
-    t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#home'
 
+  post 'signin' => 'sessions#create'
+
   get '/home' => 'static_pages#home'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'

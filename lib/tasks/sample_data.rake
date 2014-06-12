@@ -1,6 +1,6 @@
 namespace :db do
-  require 'csv'
-desc "Fill database with sample data"
+
+desc 'Fill database with sample data'
 task populate: :environment do
 
 gen_users
@@ -11,16 +11,16 @@ end
 
 
 def gen_users
-	admin = User.create!(name: "Super User",
-	email: "super@rails.org",
-	password: "qwerty",
-	password_confirmation: "qwerty",
+	User.create!(name: 'Super User',
+	email: 'super@rails.org',
+	password: 'qwerty',
+	password_confirmation: 'qwerty',
 	role: 1)
 
 	20.times do |n|
 	name = Faker::Name.name
-	email = "student-#{n+1}@railstutorial.org"
-	password = "qwerty"
+	email = 'student-#{n+1}@railstutorial.org'
+	password = 'qwerty'
 	User.create!(name: name,
 	email: email,
 	password: password,
@@ -30,8 +30,8 @@ def gen_users
 
   5.times do |n|
     name = Faker::Name.name
-    email = "teacher-#{n+1}@railstutorial.org"
-    password = "qwerty"
+    email = 'teacher-#{n+1}@railstutorial.org'
+    password = 'qwerty'
     User.create!(name: name,
                  email: email,
                  password: password,
@@ -42,8 +42,8 @@ end
 
 	
 def gen_categories
-	10.times do
-	  title  = Faker::Lorem.words(rand(2..5)).join(' ')
+	10.times do |_|
+	  title  = Faker::Lorem.words(8).join(' ')
    	description  = Faker::Lorem.sentence(rand(2..8))
 	  Category.create!(
         name: title,
@@ -56,14 +56,14 @@ end
 
 
 def gen_tsv_file
-  cates = Category.all
-  30.times do
-    CSV.open("words.tsv", "wb", @targetdelimiter.gsub('\t',"\t")) do |csv|
-
-      csv << ["animal", "count", "price"]
-      csv << ["fox", "1", "$90.00"]
-    end
-  end
+  # cates = Category.all
+  # 30.times do |i|
+  #   CSV.open('words.tsv', 'wb', @targetdelimiter.gsub('\t','\t')) do |csv|
+  #
+  #     csv << ['animal', 'count', 'price']
+  #     csv << ['fox', '1', '$90.00']
+  #   end
+  # end
 end
 
 end

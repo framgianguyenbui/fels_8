@@ -1,0 +1,262 @@
+@import "bootstrap";
+$color-primary:#fb9337;
+$color-text:#fff;
+$color-active:#b9c2cf;
+$color-border:#303f59;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4,
+h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike,
+strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead,
+tr, th, td{
+  margin:0;
+  padding:0;
+}
+.wtc{
+  display: block;
+  vertical-align:middle;
+  & > * {
+    display:inline-block;
+    vertical-align:middle;
+  }
+  &::before{
+    content:" ";
+    display:inline-block;
+    height:100%;
+    line-height:100%;
+    margin-left:-6px;
+    vertical-align:middle;
+    width:0px;
+  }
+}
+
+body{
+  font:{
+    family: 'Helvetica Neue', Arial;
+    size: 12px;
+    style:normal;
+    weight:normal;
+}
+  padding:{
+    top:70px;
+  }
+}
+#mainmenu{
+  background:{
+    color: transparent;
+    image:url(/assets/topheaderbg.png);
+  }
+  border:{
+    bottom:1px solid #303f59;
+  }
+  & .navbar-brand{
+    color:$color-primary;
+    display:block;
+    float:left;
+    font:{
+      family: 'Roboto Condensed',Arial;
+      size: 30px;
+    }
+    text:{
+      transform: uppercase;
+    }
+    & > span{
+      color:#fff;
+    }
+    & + span{
+      border:{
+        left: 1px solid #606d84;
+      }
+      color: #6a778d;
+      font:{
+        size: 12px;
+        style: italic;
+      }
+      display:block;
+      float:left;
+      margin: 8px 10px 2px;
+      padding: 8px 10px;
+      text:{
+        transform:none;
+      }
+    }
+  }
+  & .nav{
+    & > li{
+      border:{
+        left:$color-border;
+        right:$color-border;
+      }
+      & > a{
+        color:$color-text;
+        &:hover{
+          color:$color-active;
+        }
+      }
+      &.active > a{
+        background:rgba(0,0,0,0.2);
+        color:$color-active;
+      }
+    }
+  }
+}
+
+#login-page{
+  background:{
+    color:white;
+    image:url(/assets/patternbg.png);
+  }
+  height:100%;
+  left:0;
+  position: fixed;
+  top:0;
+  width:100%;
+  z-index:99999;
+  &>div{
+    height:100%;
+    margin:0 auto;
+    width:360px;
+  }
+  & .login-box{
+    background: white;
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius:3px;
+    height:auto;
+    padding:4px;
+    width:350px;
+    & .loginboxinner{
+      background:{
+        color:transparent;
+        image:url(/assets/topheaderbg.png);
+      }
+      border-radius:3px;
+      padding:20px;
+    }
+    & .logo{
+      text-align: center;
+      &>h1{
+        color:$color-text;
+        border-bottom: 1px solid #56647d;
+        margin-bottom: 5px;
+        line-height: normal;
+        font-size:32px;
+        &>span{
+          color: $color-primary;
+        }
+      }
+      &>p{
+        color: $color-text;
+        font:{
+          style:italic;
+          weight:bold;
+        }
+      }
+    }
+    & form {
+      display: block;
+      font:{
+        family: 'Roboto Condensed',Arial;
+        size:14px;
+        style:normal;
+        weight:normal;
+      }
+      margin-top: 20px;
+      & > div:not(.keep) {
+        background: #eee url(/assets/username.png) no-repeat 13px center;
+        border: 0px solid transparent;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        margin: 20px 0;
+        overflow: hidden;
+        &.password{
+          background-image:url(/assets/password.png)
+        }
+        & > div {
+          background: $color-text;
+          border-left: 1px solid #ddd;
+          margin-left: 45px;
+        }
+        & input[type="email"],& input[type="password"] {
+          border: 0!important;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          color: #666666;
+          font-size: 14px;
+          padding: 15px 10px;
+          width:254px;
+          &:active,&:hover{
+            border:none;
+          }
+        }
+      }
+      button{
+        background: #f0801d url(/assets/btngrad.png) repeat-x top left;
+        border: 0;
+        border-radius: 2px;
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        color:$color-text;
+        padding: 15px 0;
+        text-align: center;
+        font:{
+          size:14px;
+          weight:normal;
+        }
+        text-transform: uppercase;
+        width: 100%;
+      }
+      .keep{
+        color: #ccc;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 20px;
+        .checker{
+
+
+          input{
+            display:none;
+            & + label{
+              display: inline-block;
+              height: 19px;
+              line-height: 19px;
+              padding-left: 22px;
+              position: relative;
+              text-align: center;
+              &::before{
+                background:{
+                  image:url(/assets/sprite.png);
+                  position:0px -260px;
+                }
+                content:" ";
+                display:block;
+                height:19px;
+                left:0;
+                position:absolute;
+                top:0;
+                width:19px;
+              }
+            }
+            &:checked + label::before{
+              background:{
+                position:-76px -260px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .loginmsg{
+      background: #fffccc;
+      border-radius: 2px;
+      color: #333;
+      font-size: 11px;
+      margin-bottom: 10px;
+      padding: 5px;
+      text-align: center;
+    }
+  }
+}

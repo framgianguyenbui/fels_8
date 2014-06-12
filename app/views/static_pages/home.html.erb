@@ -9,4 +9,9 @@ sample application.
 class: "btn btn-large btn-primary" %>
 </div>
 <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% if signed_in? %>
+<aside class='col-lg-2 col-md-3 col-sm-4 col-xs-12'>
+  <%= render 'shared/user_sb' %>
+</aside>
+<% end %>
 

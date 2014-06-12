@@ -1,0 +1,4 @@
+<h3 class='moduleTitle'>Activities</h3>
+<ul id='activities'>
+  <%= render user.activities.paginate(page:params[:page],per_page:10) %>
+</ul>

@@ -6,10 +6,10 @@
 <ul class="users">
 <% @users.each do |user| %>
 <li>
-<%= link_to image_tag(user.avatar, alt: user.name), user %>
+<%= link_to image_tag(user.avatar, alt: user.name, width:50,height:50), user %>
 <%= link_to user.name, user %>
 <% if signed_in? %>
-	<% if current_user.admin? %> 
+	<% if current_user.admin? && !current_user?(user) %> 
 		| <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
 	<% end %>	
 <% end %>

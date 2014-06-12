@@ -1,0 +1,4 @@
+<li>
+  <%= image_tag activity.user.avatar,width:50,height:50 %>
+  <span><%= "#{activity.content} - #{time_ago_in_words(activity.created_at)}" %></span>
+</li>

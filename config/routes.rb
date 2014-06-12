@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :sessions, only: [:new, :created, :destroy]
   resources :users
+  resources :words
 
   root to: 'static_pages#home'
 

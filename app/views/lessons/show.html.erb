@@ -1,0 +1,24 @@
+<% provide(:title,'Result') %>
+<div align="center">
+<h1> <%= @lesson.category.name %></h1>
+<h3> Score: <%= @lesson.score.to_i %> / <%= @lesson.category.word_limit %> </h3>
+<table class="table table-bordered">
+  <% @lesson.started_lessons.each do |st| %>
+    <tr>
+      <td> 
+        <%= st.word.name %>
+      </td>
+      <td>        
+          <%= st.word_value && st.word_value.correct %>        
+      </td>
+    </tr> 
+  <% end %>
+</table>
+<%= form_tag(edit_lesson_path, :method => :get) do %>  
+  <%= hidden_field_tag 'lesson_id', @lesson.id %>  
+  <%= submit_tag "Re-open", class:'btn btn-large' %>
+<% end %>
+</div>
+<div>
+  &nbsp;
+</div>

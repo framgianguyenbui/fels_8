@@ -1,0 +1,17 @@
+<% provide(:title,'Started Lessons') %>
+<div align="center">
+<h1> Your lessons</h1>
+<h3> </h3>
+<table class="table table-bordered">
+  <% @lessons.each do |l| %>
+    <tr>
+      <td> 
+        <%= link_to l.category.name, l %>
+      </td>
+      <td>
+        <%= l.created_at %>
+      </td>
+    </tr> 
+  <% end %>
+</table>
+</div>

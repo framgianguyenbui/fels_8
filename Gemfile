@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'spring',        group: :development
+# gem 'spring',        group: :development
 
 group :development do
   gem 'sqlite3'
@@ -25,6 +25,8 @@ gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 
 gem 'bcrypt'
-gem "nifty-generators"
-gem 'pdfkit'
 
+gem 'prawn', '~> 1.0.0'
+
+gem 'thread_safe', '0.3.4'
+gem 'tzinfo', '1.2.1'

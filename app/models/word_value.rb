@@ -1,7 +1,5 @@
 class WordValue < ActiveRecord::Base
   belongs_to :word
-
-  has_many :started_lessons
-
+  belongs_to :started_lesson
   validates :name, presence: true
 end

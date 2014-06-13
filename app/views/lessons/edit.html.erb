@@ -1,0 +1,26 @@
+<% provide(:title,'Re-do the lesson') %>
+<div align="center">
+  <h1> <%= @lesson.category.name %></h1>
+  <h3> <%= @current_index.to_i %>/ <%= @lesson.category.word_limit %> </h3>
+  <table class="table table-bordered">
+    <tr>
+      <td rowspan="5">
+        <%= @word.name %>
+      </td>
+    </tr>
+    <% @word.word_values.each do |val| %>
+        <tr>
+          <td>
+            <%= form_for(@lesson) do |f| %>
+                <%= f.hidden_field :current_index, value: @current_index %>
+                <%= f.hidden_field :form, value: "edit" %>
+                <%= f.hidden_field :lesson_id, value: @lesson.id %>
+                <%= f.hidden_field :word_id, value: @word.id %>
+                <%= f.hidden_field :word_value_id, value: val.id %>
+                <%= f.submit val.name, class:'btn btn-large' %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>

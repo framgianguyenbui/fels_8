@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140611010158) do
   create_table "lessons", force: true do |t|
     t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "score"
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"

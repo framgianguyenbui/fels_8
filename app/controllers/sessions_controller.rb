@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :return_home
+  
   def new
   end
 
@@ -20,8 +20,5 @@ class SessionsController < ApplicationController
     redirect_to home_path
   end
 
-  private
-  def return_home
-    redirect_back_or home_path if signed_in?
-  end
+  
 end

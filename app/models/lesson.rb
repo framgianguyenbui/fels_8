@@ -1,6 +1,5 @@
-class Lesson < ActiveRecord::Base
+class Lesson < ActiveRecord::Base	
   belongs_to :category
   belongs_to :user
-
-  validates :status, presence: true
+  has_many :started_lessons  
 end

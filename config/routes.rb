@@ -19,12 +19,14 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :sessions, only: [:new, :created, :destroy]
   resources :users
-  resources :words
+  resources :lessons, only: [:index, :show, :edit, :create, :update]
+  resources :started_lessons, only: [:update]
+  resources :words, only: [:index]
 
   root to: 'static_pages#home'
 
   post 'signin' => 'sessions#create'
-
+  
   get '/home' => 'static_pages#home'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'

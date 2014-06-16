@@ -58,11 +58,9 @@ module SessionsHelper
   end
 
   def signed_in_admin
-    if !signed_in? || (signed_in? && !current_user.can_access_admin?)
+    if !signed_in? || (signed_in? && !current_user.admin_accessible?)
       store_location
       redirect_to admin_signin_path unless request.fullpath == admin_signin_path
-    else
-      redirect_to admin_home_path
     end
   end
 end

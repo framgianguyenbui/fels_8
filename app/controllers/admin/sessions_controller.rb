@@ -9,10 +9,10 @@ class Admin::SessionsController < ApplicationController
   def create
     user = User.find_by_email params[:email]
     remember = params[:remember]
-    if user && user.authenticate(params[:password]) && user.can_access_admin?
+    if user && user.authenticate(params[:password]) && user.admin_accessible?
       sign_in user,remember
       redirect_to admin_home_path
-    else if user && !user.can_access_admin?
+    else if user && !user.admin_accessible?
       flash[:error] = 'You do not have permission to login'
       else
         flash[:error] = 'Invalid Email/Password combination'

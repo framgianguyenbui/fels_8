@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     self.role == 2
   end
 
-  def admin_accessible
+  def admin_accessible?
     self && (self.admin? || self.teacher?)
   end
 

@@ -18,8 +18,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new category_params
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
-      render :show, status: :created, location: @category
+      redirect_to [:admin, @category], notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -27,8 +26,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update_attributes category_params
-      redirect_to @category, notice: 'Category was successfully updated.'
-      render :show, status: :ok, location: @category
+      redirect_to [:admin, @category], notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +34,7 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    redirect_to admin_categories_url, notice: 'Category was successfully destroyed.'
   end
 
   private

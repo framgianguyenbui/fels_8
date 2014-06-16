@@ -1,0 +1,22 @@
+
+<br>
+<h3><%= @word.name %></h3>
+<span><%= @word.category.name %></span>
+<br>
+<table>
+  <tbody>
+    <tr>
+      <th width="300">Answer</th>
+      <th>Is Correct?</th>
+    </tr>
+    <% @word.word_values.each do |f| %>
+        <tr>
+          <td><%= f.name %></td>
+          <td><%= f.correct? ? f.correct : '' %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_admin_word_path(@word) %> |
+<%= link_to 'Back', admin_words_path %>

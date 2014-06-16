@@ -1,8 +1,11 @@
 class Admin::WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_filter :signed_in_admin
+  layout 'admin/layouts/admin'
 
   def index
-    @words = Word.all
+    category = params[:category_id] ? Category.find(params[:category_id]) : Category.first
+    @words = category.words.paginate page: params[:page], per_page: 15
   end
 
   def show
@@ -10,6 +13,9 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = Word.new
+    4.times {
+      @word.word_values.build
+    }
   end
 
   def edit
@@ -18,7 +24,7 @@ class Admin::WordsController < ApplicationController
   def create
     @word = Word.new word_params
     if @word.save
-      redirect_to @word, notice: 'Word was successfully created.'
+      redirect_to [:admin,@word], notice: 'Word was successfully created.'
     else
       render :new
     end
@@ -26,7 +32,7 @@ class Admin::WordsController < ApplicationController
 
   def update
     if @word.update_attributes word_params
-      redirect_to @word, notice: 'Word was successfully updated.'
+      redirect_to [:admin,@word], notice: 'Word was successfully updated.'
     else
       render :edit
     end
@@ -34,7 +40,7 @@ class Admin::WordsController < ApplicationController
 
   def destroy
     @word.destroy
-    redirect_to words_url, notice: 'Word was successfully destroyed.'
+    redirect_to admin_words_url, notice: 'Word was successfully destroyed.'
   end
 
   private
@@ -43,6 +49,6 @@ class Admin::WordsController < ApplicationController
     end
 
     def word_params
-      params.require(:word).permit(:name)
+      params.require(:word).permit(:name, :category_id, word_values_attributes: [:id, :name, :correct])
     end
 end

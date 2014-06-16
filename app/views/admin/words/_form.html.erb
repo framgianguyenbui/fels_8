@@ -1,0 +1,30 @@
+<%= form_for [:admin,@word] do |f| %>
+  <% if @word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h2>
+      <ul>
+      <% @word.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <br>
+    <h4>Answers:</h4>
+    <br>
+    <%= f.fields_for :word_values do |p| %>
+        <div class="field">
+          <%= p.text_field :name %>
+          <%= p.check_box :correct %>
+        </div>
+    <% end %>
+    <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

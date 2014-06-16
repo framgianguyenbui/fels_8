@@ -1,0 +1,42 @@
+<% provide(:title, 'Sign Up') %>
+
+<%= form_for(@user) do |u| %>
+    <%= render 'shared/error_messages',object: u.object%>
+    <div class="control-group">
+      <div class="email controls">
+        <%= u.text_field :name, placeholder: 'Your name',class:'input-block-level',autocomplete:'off' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="email controls">
+        <%= u.email_field :email, placeholder: 'Your email',class:'input-block-level',autocomplete:'off'%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="pw controls" style="position: relative">
+        <%= u.password_field :password, id: 'txtPassword',class: 'input-block-level',placeholder: 'Your password'%>
+        <i style='position: absolute; z-index: 5; top: 50%; margin-top: -12px; right: 10px; cursor: pointer' class="icon-eye-close icon-eye-open"></i>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="pw controls" style="position: relative">
+        <%= u.password_field :password_confirmation, id: 'txtPassword',class: 'input-block-level',placeholder: 'Re-type your password'%>
+        <i style='position: absolute; z-index: 5; top: 50%; margin-top: -12px; right: 10px; cursor: pointer' class="icon-eye-close icon-eye-open"></i>
+      </div>
+    </div>
+    <div class="submit">
+      <%= u.submit 'Create account', class: 'btn btn-large btn-primary'%>
+    </div>
+
+<% end %>
+
+<div class="forget">
+  <!--  <a href="#" id="language" data-type="select" data-original-title='English' class="editable editable-click color-blue">English</a> -->
+  <a href='/signin' target='_blank'><span>Has account? <b>Sign in here</b></span>
+  </a>
+</div>
+
+

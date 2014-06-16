@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    @user.role = 0
     if @user.save
       flash[:success] = 'Successfully created user'
       redirect_to @user
@@ -48,6 +49,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest, :avatar, :role, :remember_token)
+      params.require(:user).permit(:name, :email, :password_digest, :avatar, :remember_token)
     end
 end

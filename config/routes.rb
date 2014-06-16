@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :sessions, only: [:new, :created, :destroy]
+    resources :words
+    resources :categories
+
+
+    root to: 'sessions#new'
+
+    post '/signin' => 'sessions#create'
+    post '/signout' => 'sessions#destroy'
+
+    get '/signin' => 'sessions#new'
+    get '/home' => 'static_pages#home'
+  end
+
   resources :categories
   resources :relationships, only: [:create, :destroy]
   resources :sessions, only: [:new, :created, :destroy]

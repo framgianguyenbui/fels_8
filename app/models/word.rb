@@ -5,4 +5,6 @@ class Word < ActiveRecord::Base
   has_many :started_lessons
 
   validates :name, presence: true
+
+  accepts_nested_attributes_for :word_values
 end

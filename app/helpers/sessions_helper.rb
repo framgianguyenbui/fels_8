@@ -14,10 +14,6 @@ module SessionsHelper
   end
 
   def sign_out
-    current_user.no_password_validation = true
-    current_user.remember_token = User.new_remember_token
-    current_user.update_attributes remember_token: remember_token
-    current_user.no_password_validation = false
     current_user = nil
     cookies.delete :remember_token
   end
@@ -58,6 +54,15 @@ module SessionsHelper
     unless signed_in?
       store_location
       redirect_to signin_path, notice: 'Please sign in'
+    end
+  end
+
+  def signed_in_admin
+    if !signed_in? || (signed_in? && !current_user.can_access_admin?)
+      store_location
+      redirect_to admin_signin_path unless request.fullpath == admin_signin_path
+    else
+      redirect_to admin_home_path
     end
   end
 end

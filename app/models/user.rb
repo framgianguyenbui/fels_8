@@ -42,6 +42,14 @@ class User < ActiveRecord::Base
     self.role == 1  
   end
 
+  def teacher?
+    self.role == 2
+  end
+
+  def can_access_admin?
+    self && (self.admin? || self.teacher?)
+  end
+
   private
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
